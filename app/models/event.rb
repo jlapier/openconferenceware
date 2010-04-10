@@ -76,6 +76,10 @@ class Event < ActiveRecord::Base
     return self == Event.current
   end
 
+  def current_or_parent_current?
+    return parent_or_self.current?
+  end
+
   EVENT_CURRENT_CACHE_KEY = "event_current"
 
   # Return the current Event. Determines which event to return by checking to
